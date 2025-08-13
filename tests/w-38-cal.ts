@@ -21,8 +21,16 @@ describe("w-38-cal", () => {
       .signers([newAccount])
       .rpc();
 
+    await program.methods
+      .double()
+      .accounts({
+        signer: anchor.getProvider().wallet.publicKey,
+        account: newAccount.publicKey,
+      })
+      .rpc();
+
     const account = await program.account.dataShape.fetch(newAccount.publicKey);
-    assert(account.num == 1);
+    assert(account.num == 2);
     console.log("Your transaction signature", tx);
   });
 });
