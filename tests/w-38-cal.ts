@@ -22,7 +22,7 @@ describe("w-38-cal", () => {
       .rpc();
 
     await program.methods
-      .double()
+      .add(5)
       .accounts({
         signer: anchor.getProvider().wallet.publicKey,
         account: newAccount.publicKey,
@@ -30,7 +30,7 @@ describe("w-38-cal", () => {
       .rpc();
 
     const account = await program.account.dataShape.fetch(newAccount.publicKey);
-    assert(account.num == 2);
+    assert(account.num == 6);
     console.log("Your transaction signature", tx);
   });
 });
